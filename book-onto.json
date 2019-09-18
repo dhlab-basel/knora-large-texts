@@ -1,0 +1,76 @@
+{
+  "prefixes": {
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "project": {
+    "shortcode": "00FD",
+    "shortname": "books",
+    "longname": "large books",
+    "descriptions": {
+      "en": "A ontology for testing Knora with large books"
+    },
+    "keywords": ["test", "knora-py"],
+    "lists": [],
+    "users": [
+      {
+        "username": "testuser",
+        "email": "testuser@test.org",
+        "givenName": "test",
+        "familyName": "user",
+        "password": "test",
+        "lang": "en"
+      }
+    ],
+    "ontology": {
+      "name": "books",
+      "label": "large books",
+      "resources": [
+        {
+          "name": "Book",
+          "super": "Resource",
+          "labels": {
+            "en": "book"
+          },
+          "properties": [
+            {
+              "name": "hasTitle",
+              "object": "TextValue",
+              "labels": {
+                "en": "has title"
+              },
+              "gui_element": "SimpleText",
+              "gui_attributes": [
+                "size=64",
+                "maxlength=128"
+              ],
+              "cardinality": "1"
+            },
+            {
+              "name": "hasAuthor",
+              "object": "TextValue",
+              "labels": {
+                "en": "has author"
+              },
+              "gui_element": "SimpleText",
+              "gui_attributes": [
+                "size=64",
+                "maxlength=128"
+              ],
+              "cardinality": "1"
+            },
+            {
+              "name": "hasText",
+              "object": "TextValue",
+              "labels": {
+                "en": "has text"
+              },
+              "gui_element": "Richtext",
+              "cardinality": "1"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
