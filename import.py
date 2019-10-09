@@ -25,6 +25,8 @@ pos_to_xml = {
 
 title_regex = re.compile("^Title: (.*)$")
 author_regex = re.compile("^Author: (.*)$")
+sentence_length = 10
+paragraph_length = 5
 
 
 def add_markup(input_file_path, output_file_path):
@@ -58,8 +60,16 @@ def add_markup(input_file_path, output_file_path):
 
     with open(output_file_path, "w", encoding="utf-8") as output_file:
         print("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<text>", file=output_file)
+        sentence_count = 0
+        word_count = 0
 
         for word, tag in tagged:
+            if word_count == 0:
+                if sentence_count == 0:
+                    output_file.write("<ol>\n")
+
+                output_file.write("<li>")
+
             if tag == ".":
                 output_file.write(word)
                 output_file.write("\n")
@@ -70,11 +80,29 @@ def add_markup(input_file_path, output_file_path):
                 output_file.write(word)
                 output_file.write(" ")
 
+            word_count += 1
+
+            if word_count == sentence_length:
+                output_file.write("</li>\n")
+                sentence_count += 1
+                word_count = 0
+
+            if sentence_count == paragraph_length:
+                output_file.write("</ol>\n")
+                sentence_count = 0
+
+        if word_count > 0:
+            output_file.write("</li>\n")
+            sentence_count += 1
+
+        if sentence_count > 0:
+            output_file.write("</ol>\n")
+
         print("</text>", file=output_file)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Adds markup to text.")
+    parser = argparse.ArgumentParser(description="Imports Project Gutenberg books into Knora, adding markup.")
     parser.add_argument("input", help="input file")
     parser.add_argument("output", help="output file")
     args = parser.parse_args()
