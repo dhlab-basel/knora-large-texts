@@ -27,6 +27,12 @@ pos_to_xml = {
 }
 
 
+replacements = {
+    "<": "&lt;",
+    ">": "&gt;"
+}
+
+
 title_regex = re.compile("^Title: (.*)$")
 author_regex = re.compile("^Author: (.*)$")
 sentence_length = 10
@@ -66,6 +72,9 @@ def add_markup(input_file_path, output_file_path):
 
         for word, tag in tagged:
             escaped_word = word.replace("&", "&amp;")
+
+            for replacement_in, replacement_out in replacements.items():
+                escaped_word = escaped_word.replace(replacement_in, replacement_out)
 
             if word_count == 0:
                 if sentence_count == 0:
@@ -109,7 +118,8 @@ def add_markup(input_file_path, output_file_path):
 def do_import(input_dir_path):
     temp_dir_path = tempfile.mkdtemp()
     print(f"Using temporary directory {temp_dir_path}")
-    input_filenames = [file_path for file_path in listdir(input_dir_path) if isfile(join(input_dir_path, file_path))]
+    input_filenames = [file_path for file_path in listdir(input_dir_path)
+                       if isfile(join(input_dir_path, file_path)) and file_path[len(file_path) - 4:] == ".txt"]
     con = Knora("http://0.0.0.0:3333")
     con.login("root@example.com", "test")
     schema = con.create_schema("00FD", "books")
