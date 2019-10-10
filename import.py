@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 
 import argparse
-import nltk
 import re
+import tempfile
 from os import listdir
 from os.path import isfile, join, splitext
-import tempfile
-from typing import List, Set, Dict, Tuple, Optional
-import json
-from jsonschema import validate
-from knora import KnoraError, KnoraStandoffXml, Knora, Sipi
 
+import nltk
+from knora import KnoraStandoffXml, Knora
 
 pos_to_xml = {
     "NN": "em",
@@ -68,6 +65,8 @@ def add_markup(input_file_path, output_file_path):
         word_count = 0
 
         for word, tag in tagged:
+            escaped_word = word.replace("&", "&amp;")
+
             if word_count == 0:
                 if sentence_count == 0:
                     output_file.write("<ol>\n")
@@ -75,13 +74,13 @@ def add_markup(input_file_path, output_file_path):
                 output_file.write("<li>")
 
             if tag == ".":
-                output_file.write(word)
+                output_file.write(escaped_word)
                 output_file.write("\n")
             elif tag in pos_to_xml:
                 xml_label = pos_to_xml[tag]
-                output_file.write(f"<{xml_label}>{word}</{xml_label}> ")
+                output_file.write(f"<{xml_label}>{escaped_word}</{xml_label}> ")
             else:
-                output_file.write(word)
+                output_file.write(escaped_word)
                 output_file.write(" ")
 
             word_count += 1
@@ -112,7 +111,7 @@ def do_import(input_dir_path):
     print(f"Using temporary directory {temp_dir_path}")
     input_filenames = [file_path for file_path in listdir(input_dir_path) if isfile(join(input_dir_path, file_path))]
     con = Knora("http://0.0.0.0:3333")
-    con.login("testuser@test.org", "test")
+    con.login("root@example.com", "test")
     schema = con.create_schema("00FD", "books")
 
     for input_filename in input_filenames:
@@ -125,7 +124,7 @@ def do_import(input_dir_path):
         with open(output_file_path, "r", encoding="utf-8") as xml_file:
             xml_content = xml_file.read()
 
-            resource_info = con.create_resource(schema, "book", f"{input_filename_without_ext}", {
+            resource_info = con.create_resource(schema, "Book", f"{input_filename_without_ext}", {
                 "hasAuthor": f"{author}",
                 "hasTitle": f"{title}",
                 "hasText": {
