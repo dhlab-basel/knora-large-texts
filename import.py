@@ -10,20 +10,20 @@ import nltk
 from knora import KnoraStandoffXml, Knora
 
 pos_to_xml = {
-    "NN": "em",
-    "NNP": "em",
-    "NNPS": "em",
-    "NNS": "em",
-    "VB": "strong",
-    "VBD": "strong",
-    "VBG": "strong",
-    "VBN": "strong",
-    "VBP": "strong",
-    "VBZ": "strong",
-    "JJ": "u",
-    "JJR": "u",
-    "JJS": "u",
-    "DT": "strike"
+    "NN": "noun",
+    "NNP": "noun",
+    "NNPS": "noun",
+    "NNS": "noun",
+    "VB": "verb",
+    "VBD": "verb",
+    "VBG": "verb",
+    "VBN": "verb",
+    "VBP": "verb",
+    "VBZ": "verb",
+    "JJ": "adj",
+    "JJR": "adj",
+    "JJS": "adj",
+    "DT": "det"
 }
 
 
