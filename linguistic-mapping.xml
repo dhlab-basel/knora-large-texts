@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mapping>
+     <mappingElement>
+        <tag>
+            <name>text</name>
+            <class>noClass</class>
+            <namespace>noNamespace</namespace>
+            <separatesWords>false</separatesWords>
+        </tag>
+        <standoffClass>
+            <classIri>http://www.knora.org/ontology/standoff#StandoffRootTag</classIri>
+        </standoffClass>
+    </mappingElement>
+     <mappingElement>
+        <tag>
+            <name>p</name>
+            <class>noClass</class>
+            <namespace>noNamespace</namespace>
+            <separatesWords>true</separatesWords>
+        </tag>
+        <standoffClass>
+            <classIri>http://www.knora.org/ontology/standoff#StandoffParagraphTag</classIri>
+        </standoffClass>
+    </mappingElement>
     <mappingElement>
         <tag>
             <name>noun</name>
@@ -9,9 +31,13 @@
         </tag>
         <standoffClass>
             <classIri>http://www.knora.org/ontology/00FD/books#StandoffNounTag</classIri>
-            <datatype>
-                <type>http://www.knora.org/ontology/knora-base#StandoffTextTag</type>
-            </datatype>
+            <attributes>
+                <attribute>
+                    <attributeName>word</attributeName>
+                    <namespace>noNamespace</namespace>
+                    <propertyIri>http://www.knora.org/ontology/00FD/books#standoffTagHasText</propertyIri>
+                </attribute>
+            </attributes>
         </standoffClass>
     </mappingElement>
     <mappingElement>
@@ -23,9 +49,13 @@
         </tag>
         <standoffClass>
             <classIri>http://www.knora.org/ontology/00FD/books#StandoffVerbTag</classIri>
-            <datatype>
-                <type>http://www.knora.org/ontology/knora-base#StandoffTextTag</type>
-            </datatype>
+            <attributes>
+                <attribute>
+                    <attributeName>word</attributeName>
+                    <namespace>noNamespace</namespace>
+                    <propertyIri>http://www.knora.org/ontology/00FD/books#standoffTagHasText</propertyIri>
+                </attribute>
+            </attributes>
         </standoffClass>
     </mappingElement>
     <mappingElement>
@@ -37,9 +67,13 @@
         </tag>
         <standoffClass>
             <classIri>http://www.knora.org/ontology/00FD/books#StandoffAdjectiveTag</classIri>
-            <datatype>
-                <type>http://www.knora.org/ontology/knora-base#StandoffTextTag</type>
-            </datatype>
+            <attributes>
+                <attribute>
+                    <attributeName>word</attributeName>
+                    <namespace>noNamespace</namespace>
+                    <propertyIri>http://www.knora.org/ontology/00FD/books#standoffTagHasText</propertyIri>
+                </attribute>
+            </attributes>
         </standoffClass>
     </mappingElement>
     <mappingElement>
@@ -51,9 +85,13 @@
         </tag>
         <standoffClass>
             <classIri>http://www.knora.org/ontology/00FD/books#StandoffDeterminerTag</classIri>
-            <datatype>
-                <type>http://www.knora.org/ontology/knora-base#StandoffTextTag</type>
-            </datatype>
+            <attributes>
+                <attribute>
+                    <attributeName>word</attributeName>
+                    <namespace>noNamespace</namespace>
+                    <propertyIri>http://www.knora.org/ontology/00FD/books#standoffTagHasText</propertyIri>
+                </attribute>
+            </attributes>
         </standoffClass>
     </mappingElement>
     <mappingElement>

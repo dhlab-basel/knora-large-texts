@@ -87,7 +87,7 @@ def add_markup(input_file_path, output_file_path):
                 output_file.write("\n")
             elif tag in pos_to_xml:
                 xml_label = pos_to_xml[tag]
-                output_file.write(f"<{xml_label}>{escaped_word}</{xml_label}> ")
+                output_file.write(f"<{xml_label} word=\"{escaped_word}\">{escaped_word}</{xml_label}> ")
             else:
                 output_file.write(escaped_word)
                 output_file.write(" ")
