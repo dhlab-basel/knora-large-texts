@@ -20,19 +20,19 @@
         rdfs:comment "Represents a substring in a TextValue"@en .
 
     :StandoffNounTag rdf:type owl:Class ;
-        rdfs:subClassOf knora-base:StandoffTextTag;
+        rdfs:subClassOf :StandoffTextTag;
         rdfs:comment "Represents a noun in a TextValue"@en .
 
     :StandoffVerbTag rdf:type owl:Class ;
-        rdfs:subClassOf knora-base:StandoffTextTag;
+        rdfs:subClassOf :StandoffTextTag;
         rdfs:comment "Represents a verb in a TextValue"@en .
 
     :StandoffAdjectiveTag rdf:type owl:Class ;
-        rdfs:subClassOf knora-base:StandoffTextTag;
+        rdfs:subClassOf :StandoffTextTag;
         rdfs:comment "Represents an adjective in a TextValue"@en .
 
     :StandoffDeterminerTag rdf:type owl:Class ;
-        rdfs:subClassOf knora-base:StandoffTextTag;
+        rdfs:subClassOf :StandoffTextTag;
         rdfs:comment "Represents a determiner in a TextValue"@en .
 
     :StandoffSentenceTag rdf:type owl:Class ;

@@ -3,11 +3,11 @@
 import requests
 
 json = """{
-      "knora-api:mappingHasName": "Linguistic Mapping",
+      "knora-api:mappingHasName": "LinguisticMapping",
       "knora-api:attachedToProject": {
           "@id": "http://rdfh.ch/projects/00FD"
       },
-      "rdfs:label": "LinguisticMapping",
+      "rdfs:label": "Linguistic Mapping",
       "@context": {
           "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
           "xsd" : "http://www.w3.org/2001/XMLSchema#",

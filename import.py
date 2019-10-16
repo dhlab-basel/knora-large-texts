@@ -78,9 +78,9 @@ def add_markup(input_file_path, output_file_path):
 
             if word_count == 0:
                 if sentence_count == 0:
-                    output_file.write("<ol>\n")
+                    output_file.write("<p>\n")
 
-                output_file.write("<li>")
+                output_file.write("<sentence>")
 
             if tag == ".":
                 output_file.write(escaped_word)
@@ -95,20 +95,20 @@ def add_markup(input_file_path, output_file_path):
             word_count += 1
 
             if word_count == sentence_length:
-                output_file.write("</li>\n")
+                output_file.write("</sentence>\n")
                 sentence_count += 1
                 word_count = 0
 
             if sentence_count == paragraph_length:
-                output_file.write("</ol>\n")
+                output_file.write("</p>\n")
                 sentence_count = 0
 
         if word_count > 0:
-            output_file.write("</li>\n")
+            output_file.write("</sentence>\n")
             sentence_count += 1
 
         if sentence_count > 0:
-            output_file.write("</ol>\n")
+            output_file.write("</p>\n")
 
         print("</text>", file=output_file)
 
@@ -135,10 +135,11 @@ def do_import(input_dir_path):
             xml_content = xml_file.read()
 
             resource_info = con.create_resource(schema, "Book", f"{input_filename_without_ext}", {
-                "hasAuthor": f"{author}",
-                "hasTitle": f"{title}",
+                "hasAuthor": author,
+                "hasTitle": title,
                 "hasText": {
-                    "value": KnoraStandoffXml(xml_content)
+                    "value": KnoraStandoffXml(xml_content),
+                    "mapping": "http://rdfh.ch/projects/00FD/mappings/LinguisticMapping"
                 }
             })
 
