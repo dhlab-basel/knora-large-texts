@@ -87,7 +87,7 @@ def add_markup(input_file_path, output_file_path):
                 output_file.write("\n")
             elif tag in pos_to_xml:
                 xml_label = pos_to_xml[tag]
-                output_file.write(f"<{xml_label} word=\"{escaped_word}\">{escaped_word}</{xml_label}> ")
+                output_file.write(f"<{xml_label}>{escaped_word}</{xml_label}> ")
             else:
                 output_file.write(escaped_word)
                 output_file.write(" ")
@@ -115,14 +115,19 @@ def add_markup(input_file_path, output_file_path):
     return author, title
 
 
-def do_import(input_dir_path):
+def do_import(input_dir_path, upload):
     temp_dir_path = tempfile.mkdtemp()
     print(f"Using temporary directory {temp_dir_path}")
     input_filenames = [file_path for file_path in listdir(input_dir_path)
                        if isfile(join(input_dir_path, file_path)) and file_path[len(file_path) - 4:] == ".txt"]
-    con = Knora("http://0.0.0.0:3333")
-    con.login("root@example.com", "test")
-    schema = con.create_schema("00FD", "books")
+
+    con = None
+    schema = None
+
+    if upload:
+        con = Knora("http://0.0.0.0:3333")
+        con.login("root@example.com", "test")
+        schema = con.create_schema("00FD", "books")
 
     for input_filename in input_filenames:
         print(f"Processing {input_filename}...")
@@ -130,27 +135,30 @@ def do_import(input_dir_path):
         input_file_path = join(input_dir_path, input_filename)
         output_file_path = join(temp_dir_path, f"{input_filename_without_ext}.xml")
         author, title = add_markup(input_file_path, output_file_path)
+        print(f"Wrote {output_file_path}")
 
-        with open(output_file_path, "r", encoding="utf-8") as xml_file:
-            xml_content = xml_file.read()
+        if upload:
+            with open(output_file_path, "r", encoding="utf-8") as xml_file:
+                xml_content = xml_file.read()
 
-            resource_info = con.create_resource(schema, "Book", f"{input_filename_without_ext}", {
-                "hasAuthor": author,
-                "hasTitle": title,
-                "hasText": {
-                    "value": KnoraStandoffXml(xml_content),
-                    "mapping": "http://rdfh.ch/projects/00FD/mappings/LinguisticMapping"
-                }
-            })
+                resource_info = con.create_resource(schema, "Book", f"{input_filename_without_ext}", {
+                    "hasAuthor": author,
+                    "hasTitle": title,
+                    "hasText": {
+                        "value": KnoraStandoffXml(xml_content),
+                        "mapping": "http://rdfh.ch/projects/00FD/mappings/LinguisticMapping"
+                    }
+                })
 
-            print(f"Created resource {resource_info['iri']}")
+                print(f"Created resource {resource_info['iri']}")
 
 
 def main():
     parser = argparse.ArgumentParser(description="Imports Project Gutenberg books into Knora, adding markup.")
     parser.add_argument("input", help="input directory")
+    parser.add_argument("--upload", help="upload to Knora", action="store_true")
     args = parser.parse_args()
-    do_import(input_dir_path=args.input)
+    do_import(input_dir_path=args.input, upload=args.upload)
 
 
 if __name__ == "__main__":

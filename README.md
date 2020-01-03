@@ -36,10 +36,10 @@ Requires:
 The text is run through the NLTK POS tagger to add
 (where `WORD` is the word being marked up):
 
-- `<noun word="WORD">WORD</noun>` (`books:StandoffNounTag`) for nouns
-- `<verb word="WORD">WORD</verb>` (`books:StandoffVerbTag`) for verbs
-- `<adj word="WORD">WORD</adj>` (`books:StandoffAdjectiveTag`) for adjectives
-- `<det word="WORD">WORD</det>` (`books:StandoffDeterminerTag`) for determiners
+- `<noun>WORD</noun>` (`books:StandoffNounTag`) for nouns
+- `<verb>WORD</verb>` (`books:StandoffVerbTag`) for verbs
+- `<adj>WORD</adj>` (`books:StandoffAdjectiveTag`) for adjectives
+- `<det>WORD</det>` (`books:StandoffDeterminerTag`) for determiners
 
 Each group of ten words is wrapped in `<sentence>` (`books:StandoffSentenceTag`).
 
