@@ -35,6 +35,7 @@
           "properties": [
             {
               "name": "hasTitle",
+              "super": ["hasValue"],
               "object": "TextValue",
               "labels": {
                 "en": "has title"
@@ -48,6 +49,7 @@
             },
             {
               "name": "hasAuthor",
+              "super": ["hasValue"],
               "object": "TextValue",
               "labels": {
                 "en": "has author"
@@ -60,7 +62,37 @@
               "cardinality": "1"
             },
             {
+              "name": "hasFragment",
+              "super": ["hasLinkTo"],
+              "object": "books:BookFragment",
+              "labels": {
+                "en": "has fragment"
+              },
+              "gui_element": "Searchbox",
+              "cardinality": "0-n"
+            }
+          ]
+        },
+        {
+          "name": "BookFragment",
+          "super": "Resource",
+          "labels": {
+            "en": "book fragment"
+          },
+          "properties": [
+            {
+              "name": "seqnum",
+              "super": ["seqnum"],
+              "object": "IntValue",
+              "labels": {
+                "en": "sequence number"
+              },
+              "gui_element": "Spinbox",
+              "cardinality": "1"
+            },
+            {
               "name": "hasText",
+              "super": ["hasValue"],
               "object": "TextValue",
               "labels": {
                 "en": "has text"
