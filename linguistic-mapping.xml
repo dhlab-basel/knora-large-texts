@@ -31,13 +31,6 @@
         </tag>
         <standoffClass>
             <classIri>http://www.knora.org/ontology/00FD/books#StandoffNounTag</classIri>
-            <attributes>
-                <attribute>
-                    <attributeName>word</attributeName>
-                    <namespace>noNamespace</namespace>
-                    <propertyIri>http://www.knora.org/ontology/00FD/books#standoffTagHasText</propertyIri>
-                </attribute>
-            </attributes>
         </standoffClass>
     </mappingElement>
     <mappingElement>
@@ -49,13 +42,6 @@
         </tag>
         <standoffClass>
             <classIri>http://www.knora.org/ontology/00FD/books#StandoffVerbTag</classIri>
-            <attributes>
-                <attribute>
-                    <attributeName>word</attributeName>
-                    <namespace>noNamespace</namespace>
-                    <propertyIri>http://www.knora.org/ontology/00FD/books#standoffTagHasText</propertyIri>
-                </attribute>
-            </attributes>
         </standoffClass>
     </mappingElement>
     <mappingElement>
@@ -67,13 +53,6 @@
         </tag>
         <standoffClass>
             <classIri>http://www.knora.org/ontology/00FD/books#StandoffAdjectiveTag</classIri>
-            <attributes>
-                <attribute>
-                    <attributeName>word</attributeName>
-                    <namespace>noNamespace</namespace>
-                    <propertyIri>http://www.knora.org/ontology/00FD/books#standoffTagHasText</propertyIri>
-                </attribute>
-            </attributes>
         </standoffClass>
     </mappingElement>
     <mappingElement>
@@ -85,13 +64,6 @@
         </tag>
         <standoffClass>
             <classIri>http://www.knora.org/ontology/00FD/books#StandoffDeterminerTag</classIri>
-            <attributes>
-                <attribute>
-                    <attributeName>word</attributeName>
-                    <namespace>noNamespace</namespace>
-                    <propertyIri>http://www.knora.org/ontology/00FD/books#standoffTagHasText</propertyIri>
-                </attribute>
-            </attributes>
         </standoffClass>
     </mappingElement>
     <mappingElement>

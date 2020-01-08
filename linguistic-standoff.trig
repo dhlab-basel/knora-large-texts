@@ -6,33 +6,20 @@
 @prefix : <http://www.knora.org/ontology/00FD/books#> .
 
 <http://www.knora.org/ontology/00FD/books> {
-    :standoffTagHasText rdf:type owl:DatatypeProperty ;
-        rdfs:subPropertyOf knora-base:objectCannotBeMarkedAsDeleted ;
-        knora-base:objectDatatypeConstraint xsd:string ;
-        knora-base:subjectClassConstraint :StandoffTextTag .
-
-    :StandoffTextTag rdf:type owl:Class ;
-        rdfs:subClassOf knora-base:StandoffTag,
-            [ rdf:type owl:Restriction ;
-              owl:onProperty :standoffTagHasText ;
-              owl:cardinality "1"^^xsd:nonNegativeInteger
-            ] ;
-        rdfs:comment "Represents a substring in a TextValue"@en .
-
     :StandoffNounTag rdf:type owl:Class ;
-        rdfs:subClassOf :StandoffTextTag;
+        rdfs:subClassOf knora-base:StandoffTag;
         rdfs:comment "Represents a noun in a TextValue"@en .
 
     :StandoffVerbTag rdf:type owl:Class ;
-        rdfs:subClassOf :StandoffTextTag;
+        rdfs:subClassOf knora-base:StandoffTag;
         rdfs:comment "Represents a verb in a TextValue"@en .
 
     :StandoffAdjectiveTag rdf:type owl:Class ;
-        rdfs:subClassOf :StandoffTextTag;
+        rdfs:subClassOf knora-base:StandoffTag;
         rdfs:comment "Represents an adjective in a TextValue"@en .
 
     :StandoffDeterminerTag rdf:type owl:Class ;
-        rdfs:subClassOf :StandoffTextTag;
+        rdfs:subClassOf knora-base:StandoffTag;
         rdfs:comment "Represents a determiner in a TextValue"@en .
 
     :StandoffSentenceTag rdf:type owl:Class ;
